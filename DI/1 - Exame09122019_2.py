@@ -54,6 +54,10 @@ class Exame(Gtk.Window):
 
         builder = Gtk.Builder()
         builder.add_from_file("./cadroCorreoGlade.glade")
+        self.txtCorreo = builder.get_object("txtDireccionCorreo")
+        self.textArea = builder.get_object("txvListaCorreos")
+        self.btnEngadir = builder.get_object("btnEngadir")
+        self.btnEngadir.connect("clicked", self.on_engadir)
         caixaH2 = builder.get_object("box1")
         caixaV.pack_start(caixaH2, False, False, 0)
 
@@ -73,6 +77,12 @@ class Exame(Gtk.Window):
 
     def on_cancelar(self, btn):
         self.destroy()
+
+    def on_engadir(self, btn):
+        new_line = self.txtCorreo.get_text()
+        buf = self.textArea.get_buffer()
+        end_iter = buf.get_end_iter()
+        buf.insert(end_iter, new_line + "\n")
 
 
 if __name__ == "__main__":
