@@ -60,6 +60,9 @@ class Exame(Gtk.Window):
         caixaH3 = Gtk.Box(orientation=Gtk.Orientation.HORIZONTAL, spacing=6)
         self.btnAceptar = Gtk.Button("Aceptar")
         self.btnCancelar = Gtk.Button("Cancelar")
+
+        self.btnCancelar.connect("clicked", self.on_cancelar)
+
         caixaH3.pack_end(self.btnAceptar, False, False, 0)
         caixaH3.pack_end(self.btnCancelar, False, False, 0)
 
@@ -67,6 +70,9 @@ class Exame(Gtk.Window):
 
         self.connect("delete-event", Gtk.main_quit)
         self.show_all()
+
+    def on_cancelar(self, btn):
+        self.destroy()
 
 
 if __name__ == "__main__":
